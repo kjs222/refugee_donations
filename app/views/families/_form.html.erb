@@ -1,0 +1,26 @@
+<%= form_for @family do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %></br>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %></br>
+  <%= f.label :address %>
+  <%= f.text_field :address %></br>
+  <%= f.label :arrival_date %>
+  <%= f.date_field :arrival_date %></br>
+  <%= f.label :nationality %>
+  <%= f.text_field :nationality %></br>
+  <%= f.label :description %>
+  <%= f.text_area :description %></br>
+
+  <%= f.label "Number of Married Adults in Household:" %>
+  <%= f.select :num_married_adults, (0..6) %></br>
+  <%= f.label "Number of Unmarried Adults in Household:" %>
+  <%= f.select :num_non_married_adults, (0..6) %></br>
+  <%= f.label "Number of Children over 2 in Household:" %>
+  <%= f.select :num_children_over_two, (0..10) %></br>
+  <%= f.label "Number of Children Under 2 in Household:" %>
+  <%= f.select :num_children_under_two, (0..4) %></br>
+  <%= f.submit %>
+
+
+<% end %>

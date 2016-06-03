@@ -1,0 +1,12 @@
+<h1>Refugee Families Scheduled to Arrive</h1>
+
+<% @families.each do |family| %>
+  <%= link_to "#{family.last_name}, #{family.first_name}", family_path(family) %>
+  <%= link_to "(Edit)", edit_family_path(family) %>
+  <%= link_to "(Delete)", family_path(family), method: :delete %>
+  <p>Arrival Date: <%= family.arrival_date %> </p>
+  <p>Address: <%= family.address %> </p>
+<% end %>
+<br>
+<br>
+<%= link_to "Add new family", new_family_path %>

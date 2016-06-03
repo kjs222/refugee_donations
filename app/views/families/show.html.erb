@@ -1,0 +1,17 @@
+
+<p>Scheduled to Arrive: <%= @family.arrival_date %></h4>
+<p>Name: <%= @family.last_name %>, <%= @family.first_name %></p>
+<p>Nationality: <%= @family.nationality %> </p>
+<p>Description: <%= @family.description %></p>
+<p>Address: <%= @family.address %></p>
+<p>Family Composition:</p>
+<ul>
+  <li>Married Adults: <%= @family.num_married_adults %></li>
+  <li>Unmarried Adults: <%= @family.num_non_married_adults %></li>
+  <li>Children over 2: <%= @family.num_children_over_two %></li>
+  <li>Children under 2: <%= @family.num_children_under_two %></li>
+</ul>
+
+<%= link_to "Edit Information", edit_family_path(@family) %>
+<%= link_to "Delete Family", family_path(@family), method: :delete %>
+<%= link_to "See All Families", families_path %>
