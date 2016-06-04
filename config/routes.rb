@@ -55,7 +55,7 @@ Rails.application.routes.draw do
   #   end
   namespace :admin do
     resources :families, only: [:new, :edit, :create, :update, :destroy] do
-      resources :supply_items, only: [:edit, :update, :destroy]
+      resources :supply_items, only: [:edit, :update]
     end
   end
 

@@ -7,6 +7,7 @@ class Admin::FamiliesController <Admin::BaseController
   def create
     @family = Family.new(family_params)
     if @family.save
+      @family.create_supply_items
       redirect_to family_path(@family)
     else
       render :new

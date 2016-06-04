@@ -1,5 +1,17 @@
 class Family < ActiveRecord::Base
-  has_many :supply_items
+  has_many :supply_items, dependent: :destroy 
+  has_many :supplies, through: :supply_items
+
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :arrival_date, presence: true
+  # validates :deadline, presence: true
+  validates :nationality, presence: true
+  validates :num_married_adults, presence: true
+  validates :num_non_married_adults, presence: true
+  validates :num_children_over_two, presence: true
+  validates :num_children_under_two, presence: true
 
   def num_people
     num_married_adults + num_non_married_adults + num_children_over_two + num_children_under_two
@@ -12,7 +24,6 @@ class Family < ActiveRecord::Base
   def num_full_beds
     num_married_adults/2
   end
-
 
   def num_dressers
     num_people > 4 ? 4 : num_people

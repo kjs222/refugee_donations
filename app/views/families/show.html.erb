@@ -12,6 +12,13 @@
   <li>Children under 2: <%= @family.num_children_under_two %></li>
 </ul>
 
+
+<h4>Supply List</h4>
+<% @family.supply_items.each do |supply_item| %>
+  <p><%= supply_item.supply.name %>: <%= supply_item.quantity %></p>
+<% end  %>
+
+
 <% if current_admin? %>
 <%= link_to "Edit Information", edit_admin_family_path(@family) %>
 <%= link_to "Delete Family", admin_family_path(@family), method: :delete %>

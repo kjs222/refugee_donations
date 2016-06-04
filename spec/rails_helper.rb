@@ -6,6 +6,29 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
+
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
+Supply.create(name: "Twin Bedframe")
+Supply.create(name: "Twin Mattress", new: true )
+Supply.create(name: "Full Bedframe")
+Supply.create(name: "Full Mattress", new: true )
+Supply.create(name: "Couch")
+Supply.create(name: "Kitchen Table")
+Supply.create(name: "Kitchen Chair")
+Supply.create(name: "Dresser")
+Supply.create(name: "Silverware Set")
+Supply.create(name: "Large Pot")
+Supply.create(name: "Small Pot")
+Supply.create(name: "Kettle", required: false)
+Supply.create(name: "Crib")
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

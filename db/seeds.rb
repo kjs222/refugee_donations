@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Supply.create(name: "Twin Bedframe")
 Supply.create(name: "Twin Mattress", new: true )
+Supply.create(name: "Full Bedframe")
+Supply.create(name: "Full Mattress", new: true )
 Supply.create(name: "Couch")
 Supply.create(name: "Kitchen Table")
 Supply.create(name: "Kitchen Chair")
