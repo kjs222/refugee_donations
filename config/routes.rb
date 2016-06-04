@@ -53,6 +53,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root :to => 'welcome#index'
+
   namespace :admin do
     resources :families, only: [:new, :edit, :create, :update, :destroy] do
       resources :supply_items, only: [:edit, :update]
