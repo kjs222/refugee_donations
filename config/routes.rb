@@ -53,13 +53,20 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :families do
-    resources :supply_items
+  namespace :admin do
+    resources :families, only: [:new, :edit, :create, :update, :destroy] do
+      resources :supply_items, only: [:edit, :update, :destroy]
+    end
   end
+
+  resources :families, only: [:index, :show] do
+    resources :supply_items, only: [:edit, :update, :show]
+  end
+
 
   resources :users, only: [:new, :create, :show]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-  delete '/logout' => 'sessions#destroy'  
+  delete '/logout' => 'sessions#destroy'
 end

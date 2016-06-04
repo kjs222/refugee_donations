@@ -12,6 +12,9 @@
   <li>Children under 2: <%= @family.num_children_under_two %></li>
 </ul>
 
-<%= link_to "Edit Information", edit_family_path(@family) %>
-<%= link_to "Delete Family", family_path(@family), method: :delete %>
+<% if current_admin? %>
+<%= link_to "Edit Information", edit_admin_family_path(@family) %>
+<%= link_to "Delete Family", admin_family_path(@family), method: :delete %>
+<% end %>
+
 <%= link_to "See All Families", families_path %>
