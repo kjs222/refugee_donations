@@ -8,12 +8,13 @@ RSpec.feature "guest can create account", type: :feature do
     fill_in "Password", with: "password"
     click_button "Create Account"
 
-    expect(current_path).to eq(families_path)
-    click_link "Login"
+    expect(current_path).to eq(login_path)
     fill_in 'session[username]', with: "Kerry"
     fill_in 'session[password]', with: "password"
     click_button "Login"
     expect(page).to have_content("Welcome, Kerry")
+    expect(page).to have_content("Profile")
+
 
   end
 end

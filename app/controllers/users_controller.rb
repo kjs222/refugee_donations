@@ -8,7 +8,7 @@ class UsersController <ApplicationController
     @user = User.new(user_params)
     if @user.save
       #flash
-      redirect_to families_path
+      redirect_to login_path
     else
       #flash
       render :new

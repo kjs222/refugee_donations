@@ -8,7 +8,7 @@ class SessionsController <ApplicationController
     user = User.find_by(username: params[:session][:username])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to families_path
+      redirect_to user_path(user)
     else
       flash.now[:error] = "Invalid login"
       render :new
@@ -19,7 +19,7 @@ class SessionsController <ApplicationController
 
   def destroy
     session.clear
-    redirect_to families_path
+    redirect_to login_path
   end
 
 
