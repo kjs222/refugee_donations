@@ -71,8 +71,11 @@
         <% elsif  supply_item.status == "Received" && supply_item.user%>
           <p>Receieved From: <%=supply_item.user.username %></p>
 
-        <% elsif  supply_item.status == "Needed"%>
+        <% elsif supply_item.status == "Needed" && current_user%>
           <%= f.submit "Donate" %>
+
+        <% elsif !current_user%>
+          <%= link_to "Login to Donate", login_path %>
         <% end %>
       </td>
     <% end %>

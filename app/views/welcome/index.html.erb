@@ -1,4 +1,28 @@
-<%= image_tag "SyriaCover.jpeg", class:".img-responsive" %>
 
 
-<h1>Landing page</h1>
+  <div class="cover-story col-sm-3">
+
+  <p>Imagine <span class="pop">fleeing your home</span> with just a backpack</p>
+  <a href="https://medium.com/uprooted/what-s-in-my-bag-758d435f6e62#.yx166rox8">Read the story here.</a>
+
+  <p>Crossing an <span class="pop">ocean in a raft, </span> only to find the borders closed</p>
+  <a href="https://medium.com/uprooted/stranded-lives-3aedc80c1337#.jlsgtlysv">Read the story here.</a>
+
+  <p>Getting the chance to <span class="pop">start over in America</span></p>
+
+  <p> Arriving with sparse possessions, <span class="pop">no money</span>, little English, and few prospects.</p>
+
+  <h3>But welcomed by <span class="pop">safety, freedom and the generosity</span> of the American people.</h3>
+
+<% if current_user %>
+  <%= button_to "Make #RefugeesWelcome", families_path, :method => "get", class: "btn btn-primary" %>
+
+<% else %>
+  <%= button_to "Make #RefugeesWelcome", new_user_path, :method => "get", class: "btn btn-primary" %>
+<%end  %>
+
+  </div>
+
+  <div class="cover-photo col-sm-8">
+  <%= image_tag "SyriaCover.jpeg"%>
+  </div>
