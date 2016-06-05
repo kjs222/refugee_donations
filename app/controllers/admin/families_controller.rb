@@ -4,6 +4,12 @@ class Admin::FamiliesController <Admin::BaseController
     @family = Family.new
   end
 
+  def show
+    @family = Family.find(params[:id])
+    @supply_items = @family.supply_items
+  end
+
+
   def create
     @family = Family.new(family_params)
     if @family.save

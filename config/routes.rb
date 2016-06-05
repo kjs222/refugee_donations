@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   root :to => 'welcome#index'
 
   namespace :admin do
-    resources :families, only: [:new, :edit, :create, :update, :destroy] do
+    resources :families, only: [:show, :new, :edit, :create, :update, :destroy] do
       resources :supply_items, only: [:edit, :update]
     end
   end

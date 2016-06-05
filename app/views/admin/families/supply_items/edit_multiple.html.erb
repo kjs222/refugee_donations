@@ -1,0 +1,12 @@
+<% form_for [:admin, @family, :supply_item] :url => update_multiple_family_supply_items_path, :html => { :method => :put } do |f| %>
+  <ul>
+    <% @supply_items.each do |supply_item| %>
+      <li>
+        <%= hidden_field_tag "supply_item_ids[]", supply_item.id %>
+        <%=h supply_item.quantity %>
+      </li>
+
+    <% end %>
+  </ul>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

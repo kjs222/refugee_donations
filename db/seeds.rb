@@ -18,3 +18,6 @@ Supply.create(name: "Large Pot")
 Supply.create(name: "Small Pot")
 Supply.create(name: "Kettle", required: false)
 Supply.create(name: "Crib")
+
+User.create(username: "Admin", password: "password", role: 1)
+User.create(username: "Kerry", password: "password")

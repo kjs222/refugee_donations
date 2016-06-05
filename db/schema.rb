@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603212558) do
+ActiveRecord::Schema.define(version: 20160604235909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,11 +42,13 @@ ActiveRecord::Schema.define(version: 20160603212558) do
     t.integer "family_id"
     t.integer "supply_id"
     t.integer "quantity"
-    t.string  "status"
+    t.string  "status",    default: "Needed"
+    t.integer "user_id"
   end
 
   add_index "supply_items", ["family_id"], name: "index_supply_items_on_family_id", using: :btree
   add_index "supply_items", ["supply_id"], name: "index_supply_items_on_supply_id", using: :btree
+  add_index "supply_items", ["user_id"], name: "index_supply_items_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -58,4 +60,5 @@ ActiveRecord::Schema.define(version: 20160603212558) do
 
   add_foreign_key "supply_items", "families"
   add_foreign_key "supply_items", "supplies"
+  add_foreign_key "supply_items", "users"
 end

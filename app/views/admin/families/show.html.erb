@@ -15,20 +15,26 @@
 
 <h4>Supply List</h4>
 <% @family.supply_items.each do |supply_item| %>
-  <%= form_for [@family, supply_item] do |f| %>
-    <p><%= supply_item.supply.name %>: <%= supply_item.quantity %>, <%= supply_item.status %></p>
-    <% if  supply_item.status == "Pledged"%>
-      <p>Pledged by: <%=supply_item.user.username %></p>
-    <% else %>
-      <%= f.submit "Donate" %>
-    <% end %>
+  <%= form_for [:admin, @family, supply_item], :html => {:class => "form-horizontal"} do |f| %>
+
+  <p><%= supply_item.supply.name %>:</p>
+
+  <div class="form-group">
+    <%= f.label :quantity  %>
+    <%= f.text_field :quantity, class: "form-control"   %></br>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status  %>
+    <%= f.select(:status, ["Needed", "Pledged", "Received"], { :prompt => 'Select', :selected => supply_item.status }, { class: 'form-control' }) %></br>
+  </div>
+
+  <%= f.submit "Update" %>
   <% end %>
+
 <% end %>
 
 
-<% if current_admin? %>
 <%= link_to "Edit Information", edit_admin_family_path(@family) %>
 <%= link_to "Delete Family", admin_family_path(@family), method: :delete %>
-<% end %>
-
 <%= link_to "See All Families", families_path %>
