@@ -9,7 +9,7 @@ RSpec.feature "users can log in log out", type: :feature do
     fill_in "Password", with: "password"
     click_button "Login"
 
-    expect(current_path).to eq(user_path(user))
+    expect(current_path).to eq(families_path)
     expect(page).to have_content("Welcome, Kerry")
     expect(page).to have_content("Profile")
   end
@@ -31,7 +31,7 @@ RSpec.feature "users can log in log out", type: :feature do
     fill_in "Username", with: user.username
     fill_in "Password", with: "password"
     click_button "Login"
-    expect(current_path).to eq(user_path(user))
+    expect(current_path).to eq(families_path)
     click_link "Logout"
     expect(current_path).to eq(login_path)
     expect(page).to_not have_content("Welcome, Kerry")

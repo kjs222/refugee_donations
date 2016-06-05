@@ -1,24 +1,38 @@
-<h4>Profile</h4>
+<h2>My Profile</h2>
 
-<h4>Items I've Donated:</h4>
+<h4>Name: <%=current_user.username%> </h4>
+<h4>Joined On: <%=current_user.created_at.to_date%> </h4>
+
+<div class="donated">
+
+
+<h2>Items I've Donated:</h2>
 
 <% if @user.items_donated %>
   <% @user.items_donated.each do |item| %>
-    <p> <%= item.family.nationality%> family arrived on: <%= item.family.arrival_date %></p>
+    <h4> <%= item.family.nationality%> family arrived on: <%= item.family.arrival_date.to_date %></h4>
     <p>Supply: <%= item.supply.name %></p>
-    <p>Quanity: <%= item.quantity %></p>
+    <p>Quantity: <%= item.quantity %></p>
   <% end %>
 <% end %>
 
-<h4>Items I've Pledged:</h4>
+</div>
+
+<div class="pledged">
+
+
+
+<h2>Items I've Pledged:</h2>
 
 <% if @user.items_pledged %>
   <% @user.items_pledged.each do |item| %>
-    <p> <%= item.family.nationality%> family arrving on: <%= item.family.arrival_date %></p>
+    <h4> <%= item.family.nationality%> family arrving on: <%= item.family.arrival_date.to_date %></h4>
     <p>Supply: <%= item.supply.name %></p>
-    <p>Quanity: <%= item.quantity %></p>
+    <p>Quantity: <%= item.quantity %></p>
   <% end %>
 
 <% end %>
 
-<%= link_to "Help us Welcome a new Refugee Family", families_path %>
+</div>
+
+<%= button_to "Welcome a new Family", families_path, :method => "get", class: "btn btn-primary" %>

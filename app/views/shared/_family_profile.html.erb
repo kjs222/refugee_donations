@@ -1,0 +1,37 @@
+<div class="col-sm-5">
+  <%= image_tag "#{@family.nationality}.jpeg" %>
+</div>
+
+<div class="col-sm-7 ">
+<% if current_admin? %>
+  <h2>Name: <%= @family.last_name %>, <%= @family.first_name %></h2>
+
+<% else %>
+  <h2> <%=@family.nationality%> family of <%=@family.num_people%></h2>
+<% end %>
+
+<p>Scheduled to Arrive: <%= @family.arrival_date.to_date %></h4>
+
+<p>Description: <%= @family.description %></p>
+<p>Nationality: <%= @family.nationality %> </p>
+
+<p>Family Composition:</p>
+
+<table class="table">
+  <tr>
+    <td>Married Adults: </td>
+    <td><%= @family.num_married_adults %></td>
+    <td>Unmarried Adults:</td>
+    <td><%= @family.num_non_married_adults %></td>
+  </tr>
+
+  <tr>
+    <td>Children over 2: </td>
+    <td><%= @family.num_children_over_two %></td>
+    <td>Children under 2:</td>
+    <td><%= @family.num_children_under_two %></td>
+  </tr>
+
+</table>
+
+</div>

@@ -20,7 +20,7 @@ RSpec.feature "Admin user enters a new family" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return( admin )
 
     visit families_path
-    click_on "Add new family" #only there if admin user
+    click_on "Add a new family" #only there if admin user
     expect(current_path).to eq(new_admin_family_path)
 
     fill_in 'family[first_name]', with: first_name
@@ -44,7 +44,6 @@ RSpec.feature "Admin user enters a new family" do
 
     expect(page).to have_content("#{last_name}, #{first_name}")
     expect(page).to have_content("#{arrival_date}")
-    expect(page).to have_content("#{address}")
     expect(page).to have_content("Married Adults: #{num_married_adults}")
     expect(page).to have_content("Unmarried Adults: #{num_non_married_adults}")
 

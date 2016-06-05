@@ -1,19 +1,8 @@
+<div class="container">
+<%= button_to "Back to Family List", families_path, :method => "get", class: "btn btn-primary" %>
+</div>
 
-<p>Scheduled to Arrive: <%= @family.arrival_date %></h4>
-<p>Name: <%= @family.last_name %>, <%= @family.first_name %></p>
-<p>Nationality: <%= @family.nationality %> </p>
-<p>Description: <%= @family.description %></p>
-<p>Address: <%= @family.address %></p>
-<p>Family Composition:</p>
-<ul>
-  <li>Married Adults: <%= @family.num_married_adults %></li>
-  <li>Unmarried Adults: <%= @family.num_non_married_adults %></li>
-  <li>Children over 2: <%= @family.num_children_over_two %></li>
-  <li>Children under 2: <%= @family.num_children_under_two %></li>
-</ul>
-
-
-
+<%= render partial: "/shared/family_profile" %>
 
 <h4>Supply List</h4>
 <table class="table">
@@ -28,7 +17,7 @@
     <% @family.supply_items.each do |supply_item| %>
     <tr>
 
-      <%= form_for [:admin, @family, supply_item], :html => {:class => "form"} do |f| %>
+      <%= form_for [:admin, @family, supply_item], :html => {:class => "form #{supply_item.supply.name}"} do |f| %>
       <td><%= supply_item.supply.name %></td>
       <td>
       <div class="form-group">
@@ -51,9 +40,3 @@
 
     <% end %>
 </table>
-
-
-
-<%= link_to "Edit Information", edit_admin_family_path(@family) %>
-<%= link_to "Delete Family", admin_family_path(@family), method: :delete %>
-<%= link_to "See All Families", families_path %>

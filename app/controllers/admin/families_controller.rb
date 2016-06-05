@@ -9,7 +9,6 @@ class Admin::FamiliesController <Admin::BaseController
     @supply_items = @family.supply_items
   end
 
-
   def create
     @family = Family.new(family_params)
     if @family.save
@@ -21,7 +20,6 @@ class Admin::FamiliesController <Admin::BaseController
       render :new
     end
   end
-
 
   def edit
     @family = Family.find(params[:id])

@@ -1,19 +1,23 @@
-<h1>Refugee Families Scheduled to Arrive</h1>
+<% if current_admin? %>
+  <%= button_to "Add a new family", new_admin_family_path, :method => "get", class: "btn btn-primary" %>
+
+  <h1>Refugee Families Scheduled to Arrive</h1>
+
+<% else %>
+
+  <h1>Help Welcome a Refugee Family</h1>
+<% end %>
 
 <% @families.each do |family| %>
   <% if current_admin? %>
-    <%= link_to "#{family.last_name}, #{family.first_name}", family_path(family) %>
-    <%= link_to "(Edit)", edit_admin_family_path(family) %>
-    <%= link_to "(Delete)", admin_family_path(family), method: :delete %>
+    <h4><%=family.last_name%>, <%=family.first_name%></h4>
+    <%= link_to "(Edit Family)", edit_admin_family_path(family) %>
+    <%= link_to "(Edit Supplies)", admin_family_path(family) %>
+    <%= link_to "(Delete Family)", admin_family_path(family), method: :delete %>
 
   <% else %>
-    <%= link_to "#{family.nationality} family of #{family.num_people}", family_path(family) %>
+    <h4><%= link_to "#{family.nationality} family of #{family.num_people}", family_path(family) %></h4>
   <% end %>
-  <p>Arrival Date: <%= family.arrival_date %> </p>
+  <p>Arrival Date: <%= family.arrival_date.to_date %> </p>
 
-<% end %>
-<br>
-<br>
-<% if current_admin? %>
-<%= link_to "Add new family", new_admin_family_path %>
 <% end %>

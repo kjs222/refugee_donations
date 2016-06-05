@@ -13,12 +13,10 @@ class UsersController <ApplicationController
       flash.now[:error] = @family.errors.full_messages.join(", ")
       render :new
     end
-
   end
 
   def show
     @user = current_user
-
   end
 
 

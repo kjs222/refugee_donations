@@ -1,46 +1,22 @@
-<div class="">
-
-<div class="col-sm-6">
-  <%= image_tag "#{@family.nationality}.jpeg" %>
-</div>
-
-<div class="col-sm-6 ">
 <% if current_admin? %>
-  <%= link_to "Edit Information", edit_admin_family_path(@family) %>
-  <%= link_to "Delete Family", admin_family_path(@family), method: :delete %>
-  <h2>Name: <%= @family.last_name %>, <%= @family.first_name %></h2>
 
-<% else %>
-  <h2> <%=@family.nationality%> family of <%=@family.num_people%></h2>
+  <div class="btn-group btn-group-justified">
+
+  <%= button_to "Edit Family", edit_admin_family_path(@family), :method => "get", class: "btn btn-primary" %>
+
+  <%= button_to "Delete Family", admin_family_path(@family), :method => "delete", class: "btn btn-primary" %>
+
+  <%= button_to "Edit Supplies", admin_family_path(@family), :method => "get", class: "btn btn-primary" %>
+
+  </div>
 <% end %>
 
-<p>Scheduled to Arrive: <%= @family.arrival_date %></h4>
+
+<div class="">
+
+  <%= render partial: "/shared/family_profile" %>
 
 
-
-<p>Description: <%= @family.description %></p>
-<p>Nationality: <%= @family.nationality %> </p>
-
-<p>Family Composition:</p>
-
-<table class="table">
-  <tr>
-    <td>Married Adults: </td>
-    <td><%= @family.num_married_adults %></td>
-    <td>Unmarried Adults:</td>
-    <td><%= @family.num_non_married_adults %></td>
-  </tr>
-
-  <tr>
-    <td>Children over 2: </td>
-    <td><%= @family.num_children_over_two %></td>
-    <td>Children under 2:</td>
-    <td><%= @family.num_children_under_two %></td>
-  </tr>
-
-</table>
-
-</div>
 
 </div>
 
@@ -60,7 +36,7 @@
 <% @family.supply_items.each do |supply_item| %>
 <tr>
     <% if supply_item.quantity > 0 %>
-      <%= form_for [@family, supply_item] do |f| %>
+      <%= form_for [@family, supply_item], :html => {:class =>  supply_item.supply.name} do |f| %>
       <td><%= supply_item.supply.name %></td>
       <td><%= supply_item.quantity %></td>
       <td><%= supply_item.status %></td>
@@ -69,7 +45,7 @@
           <p>Pledged by: <%=supply_item.user.username %></p>
 
         <% elsif  supply_item.status == "Received" && supply_item.user%>
-          <p>Receieved From: <%=supply_item.user.username %></p>
+          <p>Received From: <%=supply_item.user.username %></p>
 
         <% elsif supply_item.status == "Needed" && current_user%>
           <%= f.submit "Donate" %>

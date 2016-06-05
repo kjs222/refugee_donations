@@ -14,13 +14,8 @@ class Admin::SupplyItemsController <Admin::BaseController
 
   end
 
-
   def supply_item_params
     params.require(:supply_item).permit(:quantity, :status)
   end
-
-
-
-
 
 end

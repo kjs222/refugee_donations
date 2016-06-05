@@ -1,6 +1,5 @@
 class FamiliesController < ApplicationController
 
-
   def index
     @families = Family.to_arrive
   end
@@ -8,15 +7,5 @@ class FamiliesController < ApplicationController
   def show
     @family = Family.find(params[:id])
   end
-
-
-
-
-
-
-
-
-
-
 
 end
