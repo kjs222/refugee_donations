@@ -7,8 +7,7 @@ RSpec.feature "User gets to show page from index" do
     family.create_supply_items
     visit families_path
 
-    click_on "#{family[:last_name]}, #{family[:first_name]}"
-
+    click_on "#{family.nationality} family of #{family.num_people}"
 
     expect(current_path).to eq(family_path(family.id))
   end

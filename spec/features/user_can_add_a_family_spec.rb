@@ -22,31 +22,24 @@ RSpec.feature "Admin user enters a new family" do
     visit families_path
     click_on "Add new family" #only there if admin user
     expect(current_path).to eq(new_admin_family_path)
-  save_and_open_page
 
     fill_in 'family[first_name]', with: first_name
     fill_in 'family[last_name]', with: last_name
     fill_in 'family[address]', with: address
     fill_in 'family[arrival_date]', with: arrival_date
     fill_in 'family[deadline]', with: deadline
-    fill_in 'family[nationality]', with: nationality
     fill_in 'family[description]', with: description
 
-
+    select nationality, from: 'family[nationality]'
     select num_married_adults, from: "family[num_married_adults]"
     select num_non_married_adults, from: "family[num_non_married_adults]"
     select num_children_over_two, from: "family[num_children_over_two]"
     select  num_children_under_two, from: "family[num_children_under_two]"
 
-    # select num_married_adults.to_s, from: "family[num_married_adults]"
-    # select num_non_married_adults.to_s, from: "family[num_non_married_adults]"
-    # select num_children_under_two.to_s, from: "family[num_children_under_two]"
-    # select num_children_over_two.to_s, from: "family[num_children_over_two]"
-
 
     find(:button, "Create Family").click
 
-    expect(current_path).to eq(family_path(Family.last))
+    expect(current_path).to eq(admin_family_path(Family.last))
 
 
     expect(page).to have_content("#{last_name}, #{first_name}")

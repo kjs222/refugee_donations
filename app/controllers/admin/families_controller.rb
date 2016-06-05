@@ -13,9 +13,9 @@ class Admin::FamiliesController <Admin::BaseController
   def create
     @family = Family.new(family_params)
     if @family.save
-      flash[:notice] = "Family created successfully"
+      flash[:notice] = "Family created successfully.  Please review supply list"
       @family.create_supply_items
-      redirect_to family_path(@family)
+      redirect_to admin_family_path(@family)
     else
       flash.now[:error] = @family.errors.full_messages.join(", ")
       render :new
@@ -30,8 +30,8 @@ class Admin::FamiliesController <Admin::BaseController
   def update
     @family = Family.find(params[:id])
     if @family.update(family_params)
-      flash[:notice] = "Family updated successfully"
-      redirect_to family_path(@family)
+      flash[:notice] = "Family updated successfully. Please review supply list."
+      redirect_to admin_family_path(@family)
     else
       flash.now[:error] = @family.errors.full_messages.join(", ")
       render :edit

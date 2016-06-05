@@ -15,7 +15,7 @@ RSpec.feature "Admin user gets to show page with edited information" do
     expect(current_path).to eq(edit_admin_family_path(family))
     fill_in 'family[first_name]', with: edited_first_name
     click_on("Update Family")
-    expect(current_path).to eq(family_path(family))
+    expect(current_path).to eq(admin_family_path(family))
     expect(page).to have_content("#{family.last_name}, #{edited_first_name}")
   end
 
