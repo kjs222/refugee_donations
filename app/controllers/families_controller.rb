@@ -2,7 +2,7 @@ class FamiliesController < ApplicationController
 
 
   def index
-    @families = Family.all
+    @families = Family.to_arrive
   end
 
   def show
@@ -15,7 +15,7 @@ class FamiliesController < ApplicationController
 
 
 
-  
+
 
 
 

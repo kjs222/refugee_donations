@@ -1,34 +1,51 @@
+<h4>Family Details</h4>
 
+<% if current_admin? %>
+  <h2>Name: <%= @family.last_name %>, <%= @family.first_name %></h2>
+<% else %>
+  <h2> <%=@family.nationality%> family of <%=@family.num_people%></h2>
+<% end %>
 <p>Scheduled to Arrive: <%= @family.arrival_date %></h4>
-<p>Name: <%= @family.last_name %>, <%= @family.first_name %></p>
-<p>Nationality: <%= @family.nationality %> </p>
+
+
+
 <p>Description: <%= @family.description %></p>
-<p>Address: <%= @family.address %></p>
+<p>Nationality: <%= @family.nationality %> </p>
+
 <p>Family Composition:</p>
 <ul>
-  <li>Married Adults: <%= @family.num_married_adults %></li>
+  <li>Married Adults:   <%= @family.num_married_adults %></li>
   <li>Unmarried Adults: <%= @family.num_non_married_adults %></li>
-  <li>Children over 2: <%= @family.num_children_over_two %></li>
+  <li>Children over 2:  <%= @family.num_children_over_two %></li>
   <li>Children under 2: <%= @family.num_children_under_two %></li>
 </ul>
+
+<%= image_tag "#{@family.nationality}.jpeg" %>
 
 
 <h4>Supply List</h4>
 <% @family.supply_items.each do |supply_item| %>
   <%= form_for [@family, supply_item] do |f| %>
+
     <p><%= supply_item.supply.name %>: <%= supply_item.quantity %>, <%= supply_item.status %></p>
+
     <% if  supply_item.status == "Pledged"%>
       <p>Pledged by: <%=supply_item.user.username %></p>
+
+    <% elsif  supply_item.status == "Received"%>
+      <p>Receieved From: <%=supply_item.user.username %></p>
+
     <% else %>
       <%= f.submit "Donate" %>
     <% end %>
+
   <% end %>
 <% end %>
 
 
 <% if current_admin? %>
-<%= link_to "Edit Information", edit_admin_family_path(@family) %>
-<%= link_to "Delete Family", admin_family_path(@family), method: :delete %>
+  <%= link_to "Edit Information", edit_admin_family_path(@family) %>
+  <%= link_to "Delete Family", admin_family_path(@family), method: :delete %>
 <% end %>
 
 <%= link_to "See All Families", families_path %>

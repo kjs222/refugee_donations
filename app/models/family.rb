@@ -1,5 +1,5 @@
 class Family < ActiveRecord::Base
-  has_many :supply_items, dependent: :destroy 
+  has_many :supply_items, dependent: :destroy
   has_many :supplies, through: :supply_items
 
 
@@ -12,6 +12,14 @@ class Family < ActiveRecord::Base
   validates :num_non_married_adults, presence: true
   validates :num_children_over_two, presence: true
   validates :num_children_under_two, presence: true
+
+  def self.to_arrive
+    Family.where('arrival_date > ?', DateTime.now)
+  end
+
+
+# <%= image_tag "rails.png" %>
+
 
   def num_people
     num_married_adults + num_non_married_adults + num_children_over_two + num_children_under_two

@@ -1,1 +1,24 @@
 <h4>Profile</h4>
+
+<h4>Items I've Donated:</h4>
+
+<% if @user.items_donated %>
+  <% @user.items_donated.each do |item| %>
+    <p> <%= item.family.nationality%> family arrived on: <%= item.family.arrival_date %></p>
+    <p>Supply: <%= item.supply.name %></p>
+    <p>Quanity: <%= item.quantity %></p>
+  <% end %>
+<% end %>
+
+<h4>Items I've Pledged:</h4>
+
+<% if @user.items_pledged %>
+  <% @user.items_pledged.each do |item| %>
+    <p> <%= item.family.nationality%> family arrving on: <%= item.family.arrival_date %></p>
+    <p>Supply: <%= item.supply.name %></p>
+    <p>Quanity: <%= item.quantity %></p>
+  <% end %>
+
+<% end %>
+
+<%= link_to "Help us Welcome a new Refugee Family", families_path %>

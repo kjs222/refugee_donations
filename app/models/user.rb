@@ -7,4 +7,14 @@ class User < ActiveRecord::Base
 
   enum role: ["default", "admin"]
 
+  def items_donated
+    SupplyItem.where(user: self, status: "Received")
+  end
+
+
+  def items_pledged
+    SupplyItem.where(user: self, status: "Pledged")
+  end
+
+
 end
