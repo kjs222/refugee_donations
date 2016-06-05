@@ -13,26 +13,45 @@
 </ul>
 
 
+
+
 <h4>Supply List</h4>
-<% @family.supply_items.each do |supply_item| %>
-  <%= form_for [:admin, @family, supply_item], :html => {:class => "form-horizontal"} do |f| %>
+<table class="table">
+  <tr>
+    <th>Supply</th>
+    <th>Quantity</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
 
-  <p><%= supply_item.supply.name %>:</p>
 
-  <div class="form-group">
-    <%= f.label :quantity  %>
-    <%= f.text_field :quantity, class: "form-control"   %></br>
-  </div>
+    <% @family.supply_items.each do |supply_item| %>
+    <tr>
 
-  <div class="form-group">
-    <%= f.label :status  %>
-    <%= f.select(:status, ["Needed", "Pledged", "Received"], { :prompt => 'Select', :selected => supply_item.status }, { class: 'form-control' }) %></br>
-  </div>
+      <%= form_for [:admin, @family, supply_item], :html => {:class => "form"} do |f| %>
+      <td><%= supply_item.supply.name %></td>
+      <td>
+      <div class="form-group">
+        <%= f.text_field :quantity, class: "form-control"   %></br>
+      </div>
+      </td>
+      <td>
+      <div class="form-group">
+        <%= f.select(:status, ["Needed", "Pledged", "Received"], { :prompt => 'Select', :selected => supply_item.status }, { class: 'form-control' }) %></br>
+      </div>
 
-  <%= f.submit "Update" %>
-  <% end %>
+      </td>
 
-<% end %>
+      <td>
+
+      <%= f.submit "Update" %>
+
+      </td>
+      <% end %>
+
+    <% end %>
+</table>
+
 
 
 <%= link_to "Edit Information", edit_admin_family_path(@family) %>

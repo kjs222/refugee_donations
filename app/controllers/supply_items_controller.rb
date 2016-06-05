@@ -6,6 +6,7 @@ class SupplyItemsController <ApplicationController
     @supply_item.status = "Pledged"
     @supply_item.user = current_user
     @supply_item.save
+    flash[:alert] = "Donation saved"
     redirect_to family_path(@family)
   end
 

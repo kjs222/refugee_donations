@@ -9,7 +9,7 @@ class Admin::SupplyItemsController <Admin::BaseController
     @family = Family.find(params[:family_id])
     @supply_item = SupplyItem.find(params[:id])
     @supply_item.update(supply_item_params)
-
+    flash[:notice] = "Supply item updated successfully"
     redirect_to admin_family_path(@family)
 
   end

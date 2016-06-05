@@ -13,9 +13,11 @@ class Admin::FamiliesController <Admin::BaseController
   def create
     @family = Family.new(family_params)
     if @family.save
+      flash[:notice] = "Family created successfully"
       @family.create_supply_items
       redirect_to family_path(@family)
     else
+      flash.now[:error] = @family.errors.full_messages.join(", ")
       render :new
     end
   end
@@ -28,8 +30,10 @@ class Admin::FamiliesController <Admin::BaseController
   def update
     @family = Family.find(params[:id])
     if @family.update(family_params)
+      flash[:notice] = "Family updated successfully"
       redirect_to family_path(@family)
     else
+      flash.now[:error] = @family.errors.full_messages.join(", ")
       render :edit
     end
   end
@@ -37,6 +41,7 @@ class Admin::FamiliesController <Admin::BaseController
   def destroy
     @family = Family.find(params[:id])
     @family.destroy
+    flash[:notice] = "Family deleted"
     redirect_to families_path
   end
 

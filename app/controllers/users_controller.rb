@@ -7,10 +7,10 @@ class UsersController <ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #flash
+      flash[:alert] = "Account Created.  Please login."
       redirect_to login_path
     else
-      #flash
+      flash.now[:error] = @family.errors.full_messages.join(", ")
       render :new
     end
 
