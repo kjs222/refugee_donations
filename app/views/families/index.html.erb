@@ -21,3 +21,15 @@
   <p>Arrival Date: <%= family.arrival_date.to_date %> </p>
 
 <% end %>
+
+<div class="tweets">
+  <h4>Latest Tweets from UN Refugee Agency</h4>
+  <ul>
+  <% TwitterApi.get_tweets.each do |tweet| %>
+
+    <li><%= tweet.text%></li>
+
+  <% end %>
+  </ul>
+
+</div>
