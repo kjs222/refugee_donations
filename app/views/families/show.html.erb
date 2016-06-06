@@ -41,6 +41,7 @@
       <td><%= supply_item.quantity %></td>
       <td><%= supply_item.status %></td>
       <td>
+    
         <% if  supply_item.status == "Pledged" && supply_item.user%>
           <p>Pledged by: <%=supply_item.user.username %></p>
 
