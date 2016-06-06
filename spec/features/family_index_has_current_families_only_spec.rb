@@ -8,7 +8,9 @@ RSpec.feature "index has future families only" do
     family2 = Family.create(first_name: "Amir", last_name: "Mohammed", address: "1510 Blake Street, Denver, CO, 80205", arrival_date: "2018-07-01", nationality: "Iraq", num_married_adults: 0, num_non_married_adults: 1, num_children_over_two: 0, num_children_under_two: 0, deadline: "2016-06-23" )
 
     visit families_path
-    expect(page).to_not have_content("Syrian")
-    expect(page).to have_content("Iraq family of 1")
+    within(".families") do 
+      expect(page).to_not have_content("Syrian")
+      expect(page).to have_content("Iraq family of 1")
+    end
   end
 end

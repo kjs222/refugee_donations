@@ -1,12 +1,12 @@
 <% if current_admin? %>
   <%= button_to "Add a new family", new_admin_family_path, :method => "get", class: "btn btn-primary" %>
-
   <h1>Refugee Families Scheduled to Arrive</h1>
 
 <% else %>
-
   <h1>Help Welcome a Refugee Family</h1>
 <% end %>
+
+<div class="families">
 
 <% @families.each do |family| %>
   <% if current_admin? %>
@@ -22,14 +22,13 @@
 
 <% end %>
 
+</div>
+
 <div class="tweets">
   <h4>Latest Tweets from UN Refugee Agency</h4>
   <ul>
   <% TwitterApi.get_tweets.each do |tweet| %>
-
     <li><%= tweet.text%></li>
-
   <% end %>
   </ul>
-
 </div>
